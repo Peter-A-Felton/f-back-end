@@ -36,10 +36,10 @@ router.post('/api/books', (request, response, next) =>{
 // Check Post with: db.books.find()
 
 router.get('/api/books', (request, response, next)=>{
-    let id = request.query['id'];
-    if (id){
+    let _id = request.query['_id'];
+    if (_id){
         BookSchema
-            .find({"id": id})
+            .find({"_id": _id})
             .exec( (error, books) =>{
                if (error){
                    response.send({"error": error});
