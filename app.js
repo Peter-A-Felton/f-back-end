@@ -31,7 +31,7 @@ app.use((request, response, next) => {
   next();
 });
 
-app.use('/*', bookRouter);
+app.use('/', bookRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
