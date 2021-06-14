@@ -58,7 +58,6 @@ router.get('/api/books/', (request, response, next)=>{
                 }
             });
     }
-    res.render('index', { title: 'get apis' });
 });
 
 router.get('api/books/:id', (request, response, next) =>{
