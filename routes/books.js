@@ -60,22 +60,22 @@ router.get('/api/books', (request, response, next)=>{
     }
 });
 
-router.get('api/books/:id', (request, response, next) =>{
+router.get('api/books/:_id', (request, response, next) =>{
     BookSchema
-        .findById({"_id": request.params.id}, (error, result) => {
+        .findById({"_id": request.params._id}, (error, result) => {
             if (error){
                 response.status(500).send(error);
             }else if (result){
                 response.send(result);
             }else{
-                response.status(404).send({"id": request.params.id, "error": "Not Found"});
+                response.status(404).send({"_id": request.params._id, "error": "Not Found"});
             }
         });
 });
 
-router.patch('api/books/:id', (request, response, next) => {
+router.patch('api/books/:_id', (request, response, next) => {
     BookSchema
-        .findById(request.params.id, (error, result) => {
+        .findById(request.params._id, (error, result) => {
             if (error) {
                 response.status(500).send(error);
             }else if (result){
@@ -85,21 +85,21 @@ router.patch('api/books/:id', (request, response, next) => {
                 for (let field in request.body){
                     result[field] = request.body[field];
                 }
-                result.save((error, student)=>{
+                result.save((error, book)=>{
                     if (error){
                         response.status(500).send(error);
                     }
-                    response.send(student);
+                    response.send(book);
                 });
             }else{
-                response.status(404).send({"id": request.params.id, "error":  "Not Found"});
+                response.status(404).send({"_id": request.params._id, "error":  "Not Found"});
             }
         });
 });
 
-router.delete('api/books/:id', (request, response, next) => {
+router.delete('api/books/:_id', (request, response, next) => {
     BookSchema
-        .findById(request.params.id, (error, result)=>{
+        .findById(request.params._id, (error, result)=>{
             if (error) {
                 response.status(500).send(error);
             }else if (result){
@@ -107,10 +107,10 @@ router.delete('api/books/:id', (request, response, next) => {
                     if (error){
                         response.status(500).send(error);
                     }
-                    response.send({"deletedId": request.params.id});
+                    response.send({"deletedId": request.params._id});
                 });
             }else{
-                response.status(404).send({"id": request.params.id, "error":  "Not Found"});
+                response.status(404).send({"_id": request.params._id, "error":  "Not Found"});
             }
         });
 });
