@@ -26,8 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // To be able to use the API everywhere... there are better ways to handle this!
 app.use((request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*');
+  response.header("Access-Control-Expose-Headers", "Content-Length, X-JSON");
   response.header("Access-Control-Allow-Methods", "GET, PUT, POST, PATCH, DELETE, OPTIONS");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token");
+  response.header("Access-Control-Allow-Headers", "*");
   response.header("Access-Control-Max-Age", "86400");
   next();
 });
