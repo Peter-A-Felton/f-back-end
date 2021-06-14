@@ -9,7 +9,6 @@ var db = require('./db');
 
 
 
-var indexRouter = require('./routes/index');
 var bookRouter = require('./routes/books');
 
 var app = express();
@@ -32,8 +31,7 @@ app.use((request, response, next) => {
   next();
 });
 
-app.use('/', indexRouter);
-app.use('/api/*', bookRouter);
+app.use('/*', bookRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

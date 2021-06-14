@@ -7,6 +7,10 @@ function HandleError(response, reason, message, code){
     response.status(code || 500).json({"error": message});
 }
 
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Books API' });
+});
+
 router.post('/api/books/', (request, response, next) =>{
    let bookJSON = request.body;
    if (!bookJSON.title || !bookJSON.year)
