@@ -7,8 +7,8 @@ let BookSchema = new Schema({
     description: String,
     year: Number,
     author: String,
-    hardCover: String,
-    price: String
+    hardCover: Boolean,
+    price: Number
 });
 
 module.exports = mongoose.model('Book', BookSchema);

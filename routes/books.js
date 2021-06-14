@@ -17,8 +17,8 @@ router.post('/', (request, response, next) =>{
            description: bookJSON.description || '',
            year: bookJSON.year,
            author: bookJSON.author || 'Pierre Armen Faulton',
-           hardCover: bookJSON.hardCover || 'yes',
-           price: bookJSON.price || 'Free'
+           hardCover: bookJSON.hardCover || true,
+           price: bookJSON.price || 0.00
        });
        book.save( (error) => {
            if (error){
@@ -29,35 +29,35 @@ router.post('/', (request, response, next) =>{
        });
    }
 });
-// Check Post with: db.students.find()
+// Check Post with: db.books.find()
 
 router.get('/', (request, response, next)=>{
-    let name = request.query['name'];
-    if (name){
-        StudentSchema
-            .find({"firstName": name})
-            .exec( (error, students) =>{
+    let title = request.query['title'];
+    if (title){
+        BookSchema
+            .find({"title": title})
+            .exec( (error, books) =>{
                if (error){
                    response.send({"error": error});
                }else{
-                   response.send(students);
+                   response.send(books);
                }
             });
     }else{
-        StudentSchema
+        BookSchema
             .find()
-            .exec( (error, students) =>{
+            .exec( (error, books) =>{
                 if (error){
                     response.send({"error": error});
                 }else{
-                    response.send(students);
+                    response.send(books);
                 }
             });
     }
 });
 
 router.get('/:id', (request, response, next) =>{
-    StudentSchema
+    BookSchema
         .findById({"_id": request.params.id}, (error, result) => {
             if (error){
                 response.status(500).send(error);
@@ -70,7 +70,7 @@ router.get('/:id', (request, response, next) =>{
 });
 
 router.patch('/:id', (request, response, next) => {
-    StudentSchema
+    BookSchema
         .findById(request.params.id, (error, result) => {
             if (error) {
                 response.status(500).send(error);
@@ -94,7 +94,7 @@ router.patch('/:id', (request, response, next) => {
 });
 
 router.delete('/:id', (request, response, next) => {
-    StudentSchema
+    BookSchema
         .findById(request.params.id, (error, result)=>{
             if (error) {
                 response.status(500).send(error);
