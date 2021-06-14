@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let StudentSchema = require('../models/students');
+let BookSchema = require('../models/books');
 
 function HandleError(response, reason, message, code){
     console.log('ERROR: ' + reason);
@@ -8,22 +8,23 @@ function HandleError(response, reason, message, code){
 }
 
 router.post('/', (request, response, next) =>{
-   let studentJSON = request.body;
-   if (!studentJSON.firstName || !studentJSON.lastName)
+   let bookJSON = request.body;
+   if (!bookJSON.title || !bookJSON.year)
        HandleError(response, 'Missing Information', 'Form Data Missing', 500);
    else{
-       let student = new StudentSchema({
-           firstName: studentJSON.firstName, // firstName: request.body.firstName
-           lastName: studentJSON.lastName,
-           gpa: studentJSON.gpa || 0,
-           credits : studentJSON.credits || 0,
-           major: studentJSON.major || 'Undecided'
+       let book = new BookSchema({
+           title: bookJSON.title, // title: request.body.title
+           description: bookJSON.description || '',
+           year: bookJSON.year,
+           author: bookJSON.author || 'Pierre Armen Faulton',
+           hardCover: bookJSON.hardCover || 'yes',
+           price: bookJSON.price || 'Free'
        });
-       student.save( (error) => {
+       book.save( (error) => {
            if (error){
                response.send({"error": error});
            }else{
-               response.send({"id": student.id});
+               response.send({"id": book.id});
            }
        });
    }

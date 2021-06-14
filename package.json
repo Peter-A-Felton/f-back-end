@@ -1,6 +1,6 @@
 {
-  "name": "node-express-mongodb-2021",
-  "version": "0.0.0",
+  "name": "f-back-end",
+  "version": "0.0.1",
   "private": true,
   "engines": {
     "node": "16.x"
