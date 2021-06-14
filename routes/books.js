@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'Books API' });
 });
 
-router.post('/api/books/', (request, response, next) =>{
+router.post('/api/books', (request, response, next) =>{
    let bookJSON = request.body;
    if (!bookJSON.title || !bookJSON.description)
        HandleError(response, 'Missing Information', 'Form Data Missing', 500);
@@ -35,7 +35,7 @@ router.post('/api/books/', (request, response, next) =>{
 });
 // Check Post with: db.books.find()
 
-router.get('/api/books/', (request, response, next)=>{
+router.get('/api/books', (request, response, next)=>{
     let id = request.query['id'];
     if (id){
         BookSchema
