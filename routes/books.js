@@ -7,7 +7,7 @@ function HandleError(response, reason, message, code){
     response.status(code || 500).json({"error": message});
 }
 
-router.post('/', (request, response, next) =>{
+router.post('/api/books', (request, response, next) =>{
    let bookJSON = request.body;
    if (!bookJSON.title || !bookJSON.year)
        HandleError(response, 'Missing Information', 'Form Data Missing', 500);
@@ -31,7 +31,7 @@ router.post('/', (request, response, next) =>{
 });
 // Check Post with: db.books.find()
 
-router.get('/', (request, response, next)=>{
+router.get('/api/books', (request, response, next)=>{
     let title = request.query['title'];
     if (title){
         BookSchema
@@ -56,7 +56,7 @@ router.get('/', (request, response, next)=>{
     }
 });
 
-router.get('/:id', (request, response, next) =>{
+router.get('api/books/:id', (request, response, next) =>{
     BookSchema
         .findById({"_id": request.params.id}, (error, result) => {
             if (error){
@@ -69,7 +69,7 @@ router.get('/:id', (request, response, next) =>{
         });
 });
 
-router.patch('/:id', (request, response, next) => {
+router.patch('api/books/:id', (request, response, next) => {
     BookSchema
         .findById(request.params.id, (error, result) => {
             if (error) {
