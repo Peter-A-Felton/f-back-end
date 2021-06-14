@@ -13,13 +13,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/api/books/', (request, response, next) =>{
    let bookJSON = request.body;
-   if (!bookJSON.title || !bookJSON.year)
+   if (!bookJSON.title || !bookJSON.description)
        HandleError(response, 'Missing Information', 'Form Data Missing', 500);
    else{
        let book = new BookSchema({
-           title: bookJSON.title || "Test", // title: request.body.title
-           description: bookJSON.description || '',
-           year: bookJSON.year || 2000,
+           title: bookJSON.title || "A Mysterious Novel", // title: request.body.title
+           description: bookJSON.description || 'Surprisingly mysterious; good luck learning about this one.',
+           year: bookJSON.year || 1980,
            author: bookJSON.author || 'Pierre Armen Faulton',
            hardCover: bookJSON.hardCover || true,
            price: bookJSON.price || 0.00
