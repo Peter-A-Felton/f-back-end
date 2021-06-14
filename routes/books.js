@@ -17,9 +17,9 @@ router.post('/api/books/', (request, response, next) =>{
        HandleError(response, 'Missing Information', 'Form Data Missing', 500);
    else{
        let book = new BookSchema({
-           title: bookJSON.title, // title: request.body.title
+           title: bookJSON.title || "Test", // title: request.body.title
            description: bookJSON.description || '',
-           year: bookJSON.year,
+           year: bookJSON.year || 2000,
            author: bookJSON.author || 'Pierre Armen Faulton',
            hardCover: bookJSON.hardCover || true,
            price: bookJSON.price || 0.00

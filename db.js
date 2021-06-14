@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Where does this come from?
-const mongoDB = process.env.MONGODB_URI || 'mongodb+srv://myMongoDB:myMongoDB2@cluster0.dcrdr.mongodb.net/books?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || 'mongodb+srv://myMongoDB:myMongoDB2@cluster0.dcrdr.mongodb.net/BooksDatabase?retryWrites=true&w=majority';
 
 // What is this syntax about?
 mongoose
